@@ -1,0 +1,16 @@
+const mongoose = require("mongoose");
+
+const SanPhamSchema = new mongoose.Schema({
+tenSP: {
+    type: String
+},
+giaSP: {
+    type: Number
+},
+mausacSP:{
+    type:String
+}
+});
+const SanPhamModel = mongoose.model("baitaps", SanPhamSchema);
+
+module.exports = SanPhamModel;
