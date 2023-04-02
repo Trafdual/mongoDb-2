@@ -52,6 +52,7 @@ app.get('/', async (req, res) => {
       await sanphamModal.findByIdAndUpdate(id,obj);
     }
     res.render('edit',{obj:obj});
+    res.redirect('/');
   })
   app.get('/edit/:id', async(req, res)=>{
     const {tenSP, giaSP,soluongSP } = req.body
