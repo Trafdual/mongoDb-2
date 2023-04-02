@@ -24,6 +24,7 @@ const sanphamModal=require('./SanPhamModel')
 
 app.get('/', async (req, res) => {
     const data = await sanphamModal.find().lean()
+  
     res.render('home', { data })
   })
   app.get('/add', function(req, res){
@@ -31,21 +32,40 @@ app.get('/', async (req, res) => {
 })
   // Route to handle "Add" form submission
   app.post('/add', async (req, res) => {
-    const {  tenSP, giaSP,mausacSP } = req.body
-    const newDoc = new sanphamModal({  tenSP, giaSP,mausacSP })
+    const {  tenSP, giaSP,soluongSP } = req.body
+    const newDoc = new sanphamModal({  tenSP, giaSP,soluongSP })
     await newDoc.save()
     res.redirect('/')
   })
   
   // Route to handle "Edit" form submission
   app.post('/edit/:id', async (req, res) => {
-    const {tenSP, giaSP,mausacSP } = req.body
+    const {tenSP, giaSP,soluongSP } = req.body
     const id = req.params.id
-    await sanphamModal.findByIdAndUpdate(id, { tenSP, giaSP,mausacSP })
-    res.redirect('/')
+    let obj= await sanphamModal.findById(id);
+    if(req.method="POST"){
+      let obj=new sanphamModal();
+      obj.tenSP=req.body.tenSP;
+      obj.giaSP=req.body.giaSP;
+      obj.soluongSP=req.body.soluongSP;
+      obj._id=id;
+      await sanphamModal.findByIdAndUpdate(id,obj);
+    }
+    res.render('edit',{obj:obj});
   })
-  app.get('/edit/:id', function(req, res){
-    res.render('edit')
+  app.get('/edit/:id', async(req, res)=>{
+    const {tenSP, giaSP,soluongSP } = req.body
+    const id = req.params.id
+    let obj= await sanphamModal.findById(id);
+    if(req.method="POST"){
+      let obj=new sanphamModal();
+      obj.tenSP=req.body.tenSP;
+      obj.giaSP=req.body.giaSP;
+      obj.soluongSP=req.body.soluongSP;
+      obj._id=id;
+      await sanphamModal.findByIdAndUpdate(id,obj);
+    }
+    res.render('edit',{obj:obj});
 })
   // Route to handle "Delete" request
   app.post('/delete/:id', async (req, res) => {

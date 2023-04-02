@@ -7,8 +7,8 @@ tenSP: {
 giaSP: {
     type: Number
 },
-mausacSP:{
-    type:String
+soluongSP:{
+    type:Number
 }
 });
 const SanPhamModel = mongoose.model("baitaps", SanPhamSchema);

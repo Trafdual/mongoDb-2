@@ -17,9 +17,10 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th>STT</th>
         <th>Tên </th>
         <th>Đơn giá</th>
-        <th>Màu sắc</th>
+        <th>Số Lượng</th>
         <th>Chức năng</th>
       </tr>
     </thead>
@@ -27,9 +28,10 @@
     <tbody>
        {{#each data}}
       <tr>
+        <td>1</td>
         <td>{{this.tenSP}}</td>
         <td>{{this.giaSP}}</td>
-        <td>{{this.mausacSP}}</td>
+        <td>{{this.soluongSP}}</td>
        <td>
          <form action="/edit/{{this._id}}" method="get">
         <button type="submit">Edit</button>
