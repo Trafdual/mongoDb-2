@@ -2,13 +2,16 @@ const mongoose = require("mongoose");
 
 const SanPhamSchema = new mongoose.Schema({
 tenSP: {
-    type: String
+    type: String,
+    require:true
 },
 giaSP: {
-    type: Number
+    type: Number,
+    require:true
 },
 soluongSP:{
-    type:Number
+    type:Number,
+    require:true
 }
 });
 const SanPhamModel = mongoose.model("baitaps", SanPhamSchema);
